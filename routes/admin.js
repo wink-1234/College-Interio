@@ -11,7 +11,7 @@ router.post('/addAlumni', adminController.addAlumni);
 router.post('/addCourse', adminController.addCourse);
 router.post('/addOpportunity', adminController.addOpportunity);
 router.get('/login', adminController.login);
-
+router.get('/check', adminController.check)
 // router.get('/login', function(req, res){
 //     res.render('adminlogin');
 // });

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const verify = require('./verifyToken');
+const verifyAdmin = require('./verifyAdmin');
 
 const userController = require('../controller/user');
 
@@ -22,5 +23,7 @@ router.get('/complaint/get', verify, userController.complaintGet);
 router.get('/almanac', verify, userController.almanac);
 router.get('/studyMaterial', verify, userController.studyMaterial);
 router.post('/logout', userController.logout);
+
+router.get('/check', verifyAdmin, userController.check);
 
 module.exports = router;

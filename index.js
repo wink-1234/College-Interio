@@ -33,7 +33,7 @@ app.use(
     store: store
   }))
 
-app.use("/admin",adminRoutes);
+app.use("/admin", adminRoutes);
 app.use("/user",userRoutes);
 app.use("/", (req, res) => {
   res.render('index');

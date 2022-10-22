@@ -102,3 +102,8 @@ exports.addOpportunity = async(req, res, next) => {
 exports.login = (req, res) => {
     res.render('adminlogin');    
 }
+
+exports.check = (req, res) => {
+    console.log(req)
+    res.send("checking..")
+}

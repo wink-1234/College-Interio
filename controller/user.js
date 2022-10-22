@@ -22,7 +22,7 @@ exports.login = async (req, res, next) => {
     if(!validPass) return res.render('login', {alert: 'password'});
 
     
-    const token = jwt.sign({_id: user._id, email: user.email}, process.env.TOKEN_SECRET);
+    const token = jwt.sign({_id: user._id, email: user.email, admin: user.admin}, process.env.TOKEN_SECRET);
     console.log(token);
     req.session.authtoken = token;
     res.redirect('/user/home');
@@ -67,7 +67,15 @@ exports.create = async (req, res, next) => {
     res.status(201).json(user);
   };
 
-exports.home = async (req, res) => {
+const checkAuth = (req, res, next) => {
+    if( !req.session.authtoken ) {
+        res.send("User token not present");
+    }
+
+    next();
+} 
+
+exports.home = async (req , res) => {
     const user = await User.findOne({ email: req.user.email });
     res.render('dashboard', {name: user.firstName});
 }
@@ -239,4 +247,9 @@ exports.studyMaterial = async (req, res) => {
     const user = await User.findOne({ email: req.user.email });
     
     res.render("studyMaterial", {name: user.firstName});
+}
+
+exports.check = (req, res) => {
+    console.log( "IN user " ,req.user)
+    res.send("checking..")
 }

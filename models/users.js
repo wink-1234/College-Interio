@@ -41,8 +41,11 @@ const userSchema = new Schema({
   },
   courses: {
     type: Array
+  },
+  admin: {
+    type: Boolean,
+    default: false
   }
-  
 });
 
 module.exports = mongoose.model('User', userSchema);
